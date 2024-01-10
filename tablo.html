@@ -1,0 +1,56 @@
+ 
+<html>
+    <head>
+        <title>tB'nin Çarpım tablosu öğrenme alanı</title>
+        <script>
+            function GetURLParameter(sParam)
+            {
+                var sPageURL = window.location.search.substring(1);
+                var sURLVariables = sPageURL.split('&');
+                for (var i = 0; i < sURLVariables.length; i++) 
+                {
+                    var sParameterName = sURLVariables[i].split('=');
+                    if (sParameterName[0] == sParam) 
+                    {
+                        return sParameterName[1];
+                    }
+                }
+            }
+        </script>
+        <script type="text/javascript">
+            var tablo = GetURLParameter('tablo');
+
+            document.write("<center>"); 
+            document.write("<table border='3'><tr>");
+
+
+            if(tablo==null||tablo=='all') {
+                for (var x = 1; x <= 10; x++) {
+                document.write("<td>");
+                    for (var i = 1; i <= 10; i++) {
+                        document.write(x+"x" + i + "=" + x * i + "<br/>");
+                    }
+                    // her tabloya ayrı link vermek
+                    document.write("<a href=\"tablo.html?tablo="+x+"\">Tıkla</a>");
+                }
+                if(x==5) {
+                    document.write("</tr><tr>");
+                }
+                document.write("</td>");
+            } else if (tablo>=1&&tablo<=10) {
+                for (var i = 1; i <= 10; i++) {
+                    document.write("<td>");
+                    document.write(tablo+"x" + i + " = <a href=\"cevap.html?soru="+ tablo +"x" + i +"\">?</a><br/>");
+                    document.write("</td>");
+                }
+                document.write("<a href=\"tablo.html?tablo=all\">Geri git</a>");
+            } else {
+                document.write("Hatalı parametre girdiniz.");
+            }
+            
+            document.write("</tr><table>");
+        </script>
+    </head>
+    <body>
+    </body>
+</html>
